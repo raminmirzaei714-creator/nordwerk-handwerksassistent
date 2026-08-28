@@ -1038,7 +1038,7 @@ def erinnerung_email_text(a, stufe):
     nummer = text(a.get("angebotsnummer"))
     firma_name = text(firma.get("name")) or APP_NAME
     gueltig = angebot_gueltig_bis(a)
-    portal = f"http://localhost:8501/?portal={text(a.get('portal_token'))}"
+    portal = f"https://b8xurr8vrkyquv5zmwdzk3.streamlit.app/?portal={text(a.get('portal_token'))}"
 
     if stufe == 1:
         betreff = f"Freundliche Erinnerung zu Ihrem Angebot {nummer}"
@@ -1505,7 +1505,7 @@ elif st.session_state.page=="leads":
     st.title("Leads")
     st.caption("Neue Anfragen erfassen und mit wenigen Klicks in Kunden und Angebote umwandeln.")
 
-    st.text_input("Öffentlicher Lead-Link (lokal)",value="http://localhost:8501/?lead=1")
+    st.text_input("Öffentlicher Lead-Link (lokal)",value="https://b8xurr8vrkyquv5zmwdzk3.streamlit.app/?lead=1")
 
     with st.expander("＋ Lead manuell anlegen"):
         with st.form("lead_new"):
@@ -1673,7 +1673,7 @@ elif st.session_state.page=="angebot_detail":
     st.write(f"**Projekt:** {text(a.get('leistungsbereich'))}")
     if a.get("status") == "Gesendet":
         st.info(f"🔔 Erinnerungsstatus: {erinnerungsstatus(a)}")
-    st.text_input("Kundenportal-Link",value=f"http://localhost:8501/?portal={a.get('portal_token')}")
+    st.text_input("Kundenportal-Link",value=f"https://b8xurr8vrkyquv5zmwdzk3.streamlit.app/?portal={a.get('portal_token')}")
 
     st.subheader("Positionen")
     for i,p in enumerate(a.get("positionen",[]),1):
@@ -1700,7 +1700,7 @@ elif st.session_state.page=="angebot_detail":
         ok,msg=email_senden(
             empfaenger,
             f"Angebot {a.get('angebotsnummer')} – {firma.get('name')}",
-            f"Guten Tag {a.get('kundenname')},\n\nanbei erhalten Sie unser Angebot {a.get('angebotsnummer')}.\n\nKundenportal: http://localhost:8501/?portal={a.get('portal_token')}\n\nFreundliche Grüße\n{firma.get('name')}",
+            f"Guten Tag {a.get('kundenname')},\n\nanbei erhalten Sie unser Angebot {a.get('angebotsnummer')}.\n\nKundenportal: https://b8xurr8vrkyquv5zmwdzk3.streamlit.app/?portal={a.get('portal_token')}\n\nFreundliche Grüße\n{firma.get('name')}",
             pdf_erstellen(a),
             f"{a.get('angebotsnummer')}.pdf"
         )
